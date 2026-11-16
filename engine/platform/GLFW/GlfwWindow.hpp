@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Core/Window/window.hpp>
+#include <engine/core/window/window.hpp>
 #include <GLFW/glfw3.h>
 
 namespace Engine {
@@ -11,15 +11,15 @@ namespace Engine {
         ~GlfwWindow() override;
 
         // Overridden virtual methods
-        void OnUpdate() override;
+        void onUpdate() override;
 
-        uint32_t GetWidth() const override { return window_data_.width; }
-        uint32_t GetHeight() const override { return window_data_.height; }
+        uint32_t getWidth() const override { return window_data_.width; }
+        uint32_t getHeight() const override { return window_data_.height; }
 
 
     private:
-        void Init(const uint32_t& width, const uint32_t& height, const std::string& title);
-        void Shutdown();
+        void init(const uint32_t& width, const uint32_t& height, const std::string& title);
+        void shutdown();
 
     private:
         GLFWwindow* glfw_window_ptr_ = nullptr;

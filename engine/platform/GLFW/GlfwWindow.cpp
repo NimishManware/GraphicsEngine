@@ -1,16 +1,16 @@
-#include <Engine/Platform/GLFW/GlfwWindow.hpp>
+#include <engine/platform/GLFW/GlfwWindow.hpp>
 #include <iostream>
 
 namespace Engine {
 
-    std::unique_ptr<Window> Window::Create(const uint32_t& width, const uint32_t& height, const std::string& title) {
+    std::unique_ptr<Window> Window::create(const uint32_t& width, const uint32_t& height, const std::string& title) {
         return std::make_unique<GlfwWindow>(width,height,title);
     }
 
     GlfwWindow::GlfwWindow(const uint32_t& width, const uint32_t& height, const std::string& title) {
-        Init(width,height,title);
+        init(width,height,title);
     }
-    void GlfwWindow::Init(const uint32_t& width, const uint32_t& height, const std::string& title) {
+    void GlfwWindow::init(const uint32_t& width, const uint32_t& height, const std::string& title) {
         window_data_.title = title;
         window_data_.width = width;
         window_data_.height = height;
@@ -30,17 +30,17 @@ namespace Engine {
     }
 
     GlfwWindow::~GlfwWindow() {
-        Shutdown();
+        shutdown();
     }
 
-    void GlfwWindow::Shutdown() {
+    void GlfwWindow::shutdown() {
         if (glfw_window_ptr_) {
             glfwDestroyWindow(glfw_window_ptr_);
         }
         glfwTerminate();
     }
 
-    void GlfwWindow::OnUpdate() {
+    void GlfwWindow::onUpdate() {
         glfwPollEvents();
         glfwSwapBuffers(glfw_window_ptr_);
     }
